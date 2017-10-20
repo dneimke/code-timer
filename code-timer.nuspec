@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package>
+    <metadata>
+    <id>dneimke.code-timer</id>
+    <version>1.0.0.0</version>
+    <title>code-timer</title>
+    <authors>Darren Neimke</authors>
+    <owners>Darren Neimke</owners>
+    <licenseUrl>https://github.com/dneimke/code-timer/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/dneimke/code-timer</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Provides a standardized way to time the end-to-end cost, and the contribution of individual code segments within a method.</description>
+    <releaseNotes>N/A</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>performance-metrics, diagnostics, dotnetcore, timing</tags>
+    </metadata>
+</package>

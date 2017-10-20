@@ -16,3 +16,6 @@ build:
 
 test_script: 
   - dotnet test test\codetimer.tests
+
+after_build:
+  - dotnet pack ./src/codetimer/codetimer.csproj -o artifacts
