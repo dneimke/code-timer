@@ -1,6 +1,8 @@
 # code-timer
 CodeTimer provides a standardized way to time the end-to-end cost, and the contribution of individual code segments within a method.
 
+[![Build status](https://ci.appveyor.com/api/projects/status/1mocaf3ycpxjpawa?svg=true)](https://ci.appveyor.com/project/dneimke/code-timer)
+
 ```csharp
 public List<Blah> DoSomething() {
 
