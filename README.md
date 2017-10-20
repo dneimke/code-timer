@@ -2,7 +2,7 @@
 CodeTimer provides a standardized way to time the end-to-end cost, and the contribution of individual code segments within a method.
 
 ```csharp
-public DoSomething() {
+public List<Blah> DoSomething() {
 
     var timer = new CodeTimer("DoSomething", logger);
 
@@ -17,5 +17,10 @@ public DoSomething() {
         coll.Add(foo.Blah);
     }
     timer.Mark("Created list of Blah's");
+
+    // Logs the result - Error if Seccess == false
+    timer.Complete(); 
+
+    return coll;
 }
 ```
