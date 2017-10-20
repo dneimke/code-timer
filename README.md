@@ -18,7 +18,8 @@ public List<Blah> DoSomething() {
     }
     timer.Mark("Created list of Blah's");
 
-    // Logs the result - Error if Seccess == false
+    // Stops the timer and logs the result 
+    // Logs as Error if (Success == false)
     timer.Complete(); 
 
     return coll;
