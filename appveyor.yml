@@ -1,0 +1,18 @@
+image: Visual Studio 2015
+version: "1.0.0.{build}"
+configuration:
+  - Release
+
+init:
+  - git config --global core.autocrlf input
+
+before_build:
+  - dotnet restore -v minimal
+
+build:
+  project: code-timer.sln
+  parallel: true
+  verbosity: minimal
+
+est_script: 
+  - dotnet test test\codetimer.tests
