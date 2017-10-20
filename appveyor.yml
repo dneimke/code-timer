@@ -21,4 +21,4 @@ after_build:
   - dotnet pack ./src/codetimer/codetimer.csproj -o artifacts
 
 artifacts:
-  - path: artifacts\*.nupkg
+  - path: src\codetimer\artifacts\*.nupkg
