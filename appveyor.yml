@@ -14,5 +14,5 @@ build:
   parallel: true
   verbosity: minimal
 
-est_script: 
+test_script: 
   - dotnet test test\codetimer.tests
