@@ -1,5 +1,5 @@
-image: Visual Studio 2015
-version: "1.0.0.{build}"
+image: Visual Studio 2017 Preview
+version: 0.0.{build}
 configuration:
   - Release
 
@@ -17,5 +17,5 @@ build:
 test_script: 
   - dotnet test test\codetimer.tests
 
-after_build:
-  - dotnet pack ./src/codetimer/codetimer.csproj -o artifacts
+# after_build:
+#   - dotnet pack ./src/codetimer/codetimer.csproj -o artifacts
