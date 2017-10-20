@@ -1,12 +1,18 @@
 # code-timer
 CodeTimer provides a standardized way to time the end-to-end cost, and the contribution of individual code segments within a method.
 
-[![Build status](https://ci.appveyor.com/api/projects/status/1mocaf3ycpxjpawa?svg=true)](https://ci.appveyor.com/project/dneimke/code-timer)
+**Build** [![Build status](https://ci.appveyor.com/api/projects/status/1mocaf3ycpxjpawa?svg=true)](https://ci.appveyor.com/project/dneimke/code-timer)
+
+**NuGet** [![nuget](https://img.shields.io/nuget/v/codetimer.svg)](https://www.nuget.org/packages/codetimer/)
 
 ## Installation
 
 ```sh
-npm install code-timer --save
+Nuget
+Install-Package codetimer -Version 0.0.12
+
+dotnet CLI
+dotnet add package codetimer --version 0.0.12
 ```
 
 ## Usage example
