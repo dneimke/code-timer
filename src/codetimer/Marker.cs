@@ -2,11 +2,11 @@
 
 namespace CodeTimer {
 
-    public class Segment {
+    public class Marker {
         private readonly string name;
         private readonly long ticks;
 
-        public Segment(long ticks, string name = "") {
+        public Marker(long ticks, string name = "") {
             this.name = name;
             this.ticks = ticks;
         }

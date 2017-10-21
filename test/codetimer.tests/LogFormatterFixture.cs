@@ -15,7 +15,7 @@ namespace CodeTimer.Tests
 
         [Theory]
         [ClassData(typeof(TestDataGenerator))]
-        public void ShouldFormatWhenSegmentsPresent(ICodeTimer codeTimer, string expected)
+        public void ShouldFormatWhenMarkersPresent(ICodeTimer codeTimer, string expected)
         {
             // Arrange
 
@@ -28,7 +28,7 @@ namespace CodeTimer.Tests
 
 
         [Fact]
-        public void ShouldFormatWhenSegmentsEmpty()
+        public void ShouldFormatWhenMarkersEmpty()
         {
             // Arrange
 
@@ -39,7 +39,7 @@ namespace CodeTimer.Tests
 
 
         [Fact]
-        public void ShouldFormatWhenSegmentsAreNull()
+        public void ShouldFormatWhenMarkersAreNull()
         {
             // Arrange
 

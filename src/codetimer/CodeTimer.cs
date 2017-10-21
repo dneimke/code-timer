@@ -11,7 +11,7 @@ namespace CodeTimer
     {
 
         private string name;
-        private List<Segment> segments;
+        private List<Marker> segments;
         private long expectedMilliseconds = 0;
 
         private readonly ILogger logger;
@@ -23,7 +23,8 @@ namespace CodeTimer
             this.name = name;
             timer = new PerformanceTimer();
             logFormatter = new LogFormatter();
-            segments = new List<Segment>();
+            segments = new List<Marker>();
+
             timer.Start();
         }
 
@@ -33,7 +34,8 @@ namespace CodeTimer
             this.logger = logger;
             timer = new PerformanceTimer();
             logFormatter = new LogFormatter(this);
-            segments = new List<Segment>();
+            segments = new List<Marker>();
+
             timer.Start();
         }
 
@@ -43,7 +45,8 @@ namespace CodeTimer
             this.logger = logger;
             timer = performanceTimer;
             logFormatter = new LogFormatter(this);
-            segments = new List<Segment>();
+            segments = new List<Marker>();
+
             timer.Start();
         }
 
@@ -53,7 +56,7 @@ namespace CodeTimer
             this.logger = logger;
             timer = performanceTimer;
             this.logFormatter = logFormatter;
-            segments = new List<Segment>();
+            segments = new List<Marker>();
 
             logFormatter.SetCodeTimer(this);
 
@@ -89,19 +92,19 @@ namespace CodeTimer
             return logFormatter.GetFormattedLogText();
         }
 
-        public IList<Segment> GetSegments()
+        public IList<Marker> GetMarkers()
         {
             return segments;
         }
 
         public void Mark()
         {
-            segments.Add(new Segment(timer.ElapsedMilliseconds));
+            segments.Add(new Marker(timer.ElapsedMilliseconds));
         }
 
-        public void Mark(string segmentName)
+        public void Mark(string markerName)
         {
-            segments.Add(new Segment(timer.ElapsedMilliseconds, segmentName));
+            segments.Add(new Marker(timer.ElapsedMilliseconds, markerName));
         }
 
         public bool Success()

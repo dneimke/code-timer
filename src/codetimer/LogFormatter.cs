@@ -37,7 +37,7 @@ namespace CodeTimer
 
                 sb.AppendLine(formattedHeader);
 
-                foreach(var segment in codeTimer.GetSegments()) {
+                foreach(var segment in codeTimer.GetMarkers()) {
                     sb.AppendLine($" - {segment.Name}: {segment.Ticks}ms");
                 }
                 var logMessage = sb.ToString();

@@ -1,21 +1,30 @@
 # code-timer
 CodeTimer provides a standardized way to time the end-to-end cost, and the contribution of individual code segments within a method.
 
-**Build** [![Build status](https://ci.appveyor.com/api/projects/status/1mocaf3ycpxjpawa?svg=true)](https://ci.appveyor.com/project/dneimke/code-timer)
-
-**NuGet** [![nuget](https://img.shields.io/nuget/v/codetimer.svg)](https://www.nuget.org/packages/codetimer/)
+[![Build status](https://ci.appveyor.com/api/projects/status/1mocaf3ycpxjpawa?svg=true)](https://ci.appveyor.com/project/dneimke/code-timer)      [![nuget](https://img.shields.io/nuget/v/codetimer.svg)](https://www.nuget.org/packages/codetimer/)
 
 ## Installation
 
 ```sh
 Nuget
-Install-Package codetimer -Version 0.0.12
+Install-Package codetimer
 
 dotnet CLI
-dotnet add package codetimer --version 0.0.12
+dotnet add package codetimer
+```
+
+## Example
+Creates a new CodeTimer, passing in a logger and specifying the expected ceiling time for the timing operation.
+
+```csharp
+var codeTimer = new CodeTimer.CodeTimer("GetDetailsView", localLogger)
+     {
+         ExpectedMilliseconds = 1200
+     };
 ```
 
 ## Usage example
+Call Mark() after to measure the performance cost of individual blocks to help identify which parts of a method are the most expensive.
 
 ```csharp
 public List<Blah> DoSomething() {

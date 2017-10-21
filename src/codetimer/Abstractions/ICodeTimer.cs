@@ -27,8 +27,8 @@ namespace CodeTimer.Abstractions
         /// <summary>
         /// Marks a segment and records the elapsed time with a descriptive name
         /// </summary>
-        /// <param name="segmentName">A descriptive name for the <see cref="Marker" />></param>
-        void Mark(string segmentName);
+        /// <param name="markerName">A descriptive name for the <see cref="Marker" />></param>
+        void Mark(string markerName);
 
         /// <summary>
         /// Gets the elapsed milliseconds for the current timer
@@ -43,10 +43,10 @@ namespace CodeTimer.Abstractions
         string GetFormattedResult();
 
         /// <summary>
-        /// Gets all <see cref="Segment" /> items for the current timer
+        /// Gets all <see cref="Marker" /> items for the current timer
         /// </summary>
-        /// <returns>All <see cref="Segment" /> items for timer</returns>
-        IList<Segment> GetSegments();
+        /// <returns>All <see cref="Marker" /> items for timer</returns>
+        IList<Marker> GetMarkers();
 
         /// <summary>
         /// Provides the result of the timer based on the ElapsedMilliseconds and the ExpectedMilliseconds

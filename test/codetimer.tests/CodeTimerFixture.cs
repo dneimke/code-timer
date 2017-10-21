@@ -13,28 +13,28 @@ namespace CodeTimer.Tests
 
         [Theory]
         [ClassData(typeof(CodeTimerTestDataGenerator1))]
-        public void ShouldReturnCorrectSuccessValue(ICodeTimer codeTimer, bool extectedResult)
+        public void ShouldReturnCorrectSuccessValue(ICodeTimer codeTimer, bool extected)
         {
             // Arrange
 
             // Act
-            var actualResult = codeTimer.Success();
+            var actual = codeTimer.Success();
 
             // Assert
-            Assert.True(actualResult == extectedResult);
+            Assert.True(actual == extected);
         }
 
         [Theory]
         [ClassData(typeof(CodeTimerTestDataGenerator2))]
-        public void ShouldCreateSegmentsWhenMarked(ICodeTimer codeTimer, int extectedResult)
+        public void ShouldCreateMarkersWhenMarked(ICodeTimer codeTimer, int extected)
         {
             // Arrange
 
             // Act
-            var actualResult = codeTimer.GetSegments().Count;
+            var actual = codeTimer.GetMarkers().Count;
 
             // Assert
-            Assert.True(actualResult == extectedResult);
+            Assert.True(actual == extected);
         }
 
     }
@@ -108,24 +108,24 @@ namespace CodeTimer.Tests
     {
         private readonly List<object[]> _data = new List<object[]>
         {
-            NoSegmentsAdded(),
-            OneSegmentAdded()
+            NoMarkersAdded(),
+            OneMarkerAdded()
         };
 
-        static object[] NoSegmentsAdded()
+        static object[] NoMarkersAdded()
         {
             var timer = new TestPerformanceTimer(900);
-            var codeTimer = new CodeTimer("NoSegmentsAdded", null, timer);
+            var codeTimer = new CodeTimer("NoMarkersAdded", null, timer);
 
             return new object[] { codeTimer, 0 };
         }
 
-        static object[] OneSegmentAdded()
+        static object[] OneMarkerAdded()
         {
             var timer = new TestPerformanceTimer(1000);
-            var codeTimer = new CodeTimer("OneSegmentAdded", null, timer);
+            var codeTimer = new CodeTimer("OneMarkerAdded", null, timer);
 
-            codeTimer.Mark("Segment 1");
+            codeTimer.Mark("Marker 1");
 
             return new object[] { codeTimer, 1 };
         }
