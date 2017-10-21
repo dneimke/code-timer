@@ -2,21 +2,28 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using Microsoft.Extensions.Logging;
+using CodeTimer.Abstractions;
 
-namespace CodeTimer {
+namespace CodeTimer 
+{
 
-    public class CodeTimer : ICodeTimer {
+    public class CodeTimer : ICodeTimer 
+    {
 
-        private readonly string name;
-        private readonly ILogger logger;
-        private readonly Stopwatch timer;
+        private string name;
         private List<Segment> segments;
+        private long expectedMilliseconds = 0;
 
+        private readonly ILogger logger;
+        private readonly IPerformanceTimer timer;
+        private readonly ILogFormatter logFormatter;
+      
         public CodeTimer(string name)
         {
             this.name = name;
-            this.segments = new List<Segment>();
-            this.timer = new Stopwatch();
+            timer = new PerformanceTimer();
+            logFormatter = new LogFormatter();
+            segments = new List<Segment>();
             timer.Start();
         }
 
@@ -24,18 +31,43 @@ namespace CodeTimer {
         {
             this.name = name;
             this.logger = logger;
-            this.segments = new List<Segment>();
-            this.timer = new Stopwatch();
+            timer = new PerformanceTimer();
+            logFormatter = new LogFormatter(this);
+            segments = new List<Segment>();
             timer.Start();
         }
 
-        public long ExpectedMilliseconds { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        public CodeTimer(string name, ILogger logger, IPerformanceTimer performanceTimer)
+        {
+            this.name = name;
+            this.logger = logger;
+            timer = performanceTimer;
+            logFormatter = new LogFormatter(this);
+            segments = new List<Segment>();
+            timer.Start();
+        }
+
+        public CodeTimer(string name, ILogger logger, IPerformanceTimer performanceTimer, ILogFormatter logFormatter)
+        {
+            this.name = name;
+            this.logger = logger;
+            timer = performanceTimer;
+            this.logFormatter = logFormatter;
+            segments = new List<Segment>();
+
+            logFormatter.SetCodeTimer(this);
+
+            timer.Start();
+        }
+
+        public long ExpectedMilliseconds { get => expectedMilliseconds; set => expectedMilliseconds = value; }
+        public string Name { get => name; set => name = value; }
 
         public void Complete()
         {
-            this.timer.Stop();
+            timer.Stop();
 
-            if(this.logger != null) {
+            if(logger != null) {
 
                 var logMessage = this.GetFormattedResult();
 
@@ -49,49 +81,34 @@ namespace CodeTimer {
 
         public long GetElapsedMilliseconds()
         {
-            return this.timer.ElapsedMilliseconds;
+            return timer.ElapsedMilliseconds;
         }
 
         public string GetFormattedResult()
         {
-            var jobName = string.IsNullOrEmpty(this.name) ? "CodeTimer Job" : this.name;
-            var timeTaken = this.GetElapsedMilliseconds();
-            var result = this.Success() ? "succeeded" : "failed";
-
-            var formattedHeader = $"{jobName} ran for {timeTaken}ms and {result}";
-
-            var sb = new StringBuilder() ;
-
-            sb.AppendLine(formattedHeader);
-
-            foreach(var segment in this.segments) {
-                sb.AppendLine($"{segment.Name} timings - {segment.Ticks}");
-            }
-            var logMessage = sb.ToString();
-
-            return logMessage;
+            return logFormatter.GetFormattedLogText();
         }
 
-        public IEnumerable<Segment> GetSegments()
+        public IList<Segment> GetSegments()
         {
-            return this.segments;
+            return segments;
         }
 
         public void Mark()
         {
-            this.segments.Add(new Segment(this.timer.ElapsedMilliseconds));
+            segments.Add(new Segment(timer.ElapsedMilliseconds));
         }
 
         public void Mark(string segmentName)
         {
-            this.segments.Add(new Segment(this.timer.ElapsedMilliseconds, segmentName));
+            segments.Add(new Segment(timer.ElapsedMilliseconds, segmentName));
         }
 
         public bool Success()
         {
-            if(this.ExpectedMilliseconds > 0)
+            if(ExpectedMilliseconds > 0)
             {
-                return this.GetElapsedMilliseconds() <= this.ExpectedMilliseconds;
+                return GetElapsedMilliseconds() <= ExpectedMilliseconds;
             }
 
             return true;

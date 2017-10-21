@@ -2,9 +2,12 @@
 
 using System.Collections.Generic;
 
-namespace CodeTimer {
+namespace CodeTimer.Abstractions 
+{
 
-    public interface ICodeTimer {
+    public interface ICodeTimer 
+    {
+        string Name {get;set;}
 
         /// <summary>
         /// Defines the expected performance boundary for the timer.
@@ -43,7 +46,7 @@ namespace CodeTimer {
         /// Gets all <see cref="Segment" /> items for the current timer
         /// </summary>
         /// <returns>All <see cref="Segment" /> items for timer</returns>
-        IEnumerable<Segment> GetSegments();
+        IList<Segment> GetSegments();
 
         /// <summary>
         /// Provides the result of the timer based on the ElapsedMilliseconds and the ExpectedMilliseconds
