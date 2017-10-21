@@ -11,7 +11,7 @@ namespace CodeTimer
     {
 
         private string name;
-        private List<Marker> segments;
+        private List<Marker> markers;
         private long expectedMilliseconds = 0;
 
         private readonly ILogger logger;
@@ -23,7 +23,7 @@ namespace CodeTimer
             this.name = name;
             timer = new PerformanceTimer();
             logFormatter = new LogFormatter();
-            segments = new List<Marker>();
+            markers = new List<Marker>();
 
             timer.Start();
         }
@@ -34,7 +34,7 @@ namespace CodeTimer
             this.logger = logger;
             timer = new PerformanceTimer();
             logFormatter = new LogFormatter(this);
-            segments = new List<Marker>();
+            markers = new List<Marker>();
 
             timer.Start();
         }
@@ -45,7 +45,7 @@ namespace CodeTimer
             this.logger = logger;
             timer = performanceTimer;
             logFormatter = new LogFormatter(this);
-            segments = new List<Marker>();
+            markers = new List<Marker>();
 
             timer.Start();
         }
@@ -56,7 +56,7 @@ namespace CodeTimer
             this.logger = logger;
             timer = performanceTimer;
             this.logFormatter = logFormatter;
-            segments = new List<Marker>();
+            markers = new List<Marker>();
 
             logFormatter.SetCodeTimer(this);
 
@@ -94,17 +94,17 @@ namespace CodeTimer
 
         public IList<Marker> GetMarkers()
         {
-            return segments;
+            return markers;
         }
 
         public void Mark()
         {
-            segments.Add(new Marker(timer.ElapsedMilliseconds));
+            markers.Add(new Marker(timer.ElapsedMilliseconds));
         }
 
         public void Mark(string markerName)
         {
-            segments.Add(new Marker(timer.ElapsedMilliseconds, markerName));
+            markers.Add(new Marker(timer.ElapsedMilliseconds, markerName));
         }
 
         public bool Success()

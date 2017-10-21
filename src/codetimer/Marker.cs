@@ -16,9 +16,12 @@ namespace CodeTimer {
         public long Ticks => ticks;
 
         public override string ToString() {
-            return (string.IsNullOrEmpty(this.Name)) ?
-                    $"{this.Ticks} - {this.Name}" :
-                    $"{this.Ticks}";
+
+            var name = this.Name ?? "";
+
+            return (string.IsNullOrEmpty(name.Trim())) ?
+                    $"{this.Ticks}" :
+                    $"{this.Ticks} - {this.Name}";
         }
     }
 }

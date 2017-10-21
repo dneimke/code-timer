@@ -29,7 +29,10 @@ Call Mark() after to measure the performance cost of individual blocks to help i
 ```csharp
 public List<Blah> DoSomething() {
 
-    var timer = new CodeTimer("DoSomething", logger);
+    var timer = new CodeTimer("DoSomething", localLogger)
+    {
+        ExpectedMilliseconds = 1200
+    };
 
     var data = MakeDatabaseCall();
     timer.Mark("Get initial data");
@@ -57,7 +60,10 @@ The CodeTimer has a pluggable formatter for returning results and which is used 
 The example below displays an example result which is returned by the default Formatter.
 
 ```csharp
-var codeTimer = new CodeTimer("Case1", 1000);
+var codeTimer = new CodeTimer("Case1", localLogger)
+{
+    ExpectedMilliseconds = 1200
+};
 
 // Do something
 codeTimer.Mark("Start");  // 400ms

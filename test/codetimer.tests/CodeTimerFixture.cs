@@ -13,7 +13,7 @@ namespace CodeTimer.Tests
 
         [Theory]
         [ClassData(typeof(CodeTimerTestDataGenerator1))]
-        public void ShouldReturnCorrectSuccessValue(ICodeTimer codeTimer, bool extected)
+        public void ShouldReturnCorrectSuccessValue(ICodeTimer codeTimer, bool expected)
         {
             // Arrange
 
@@ -21,7 +21,7 @@ namespace CodeTimer.Tests
             var actual = codeTimer.Success();
 
             // Assert
-            Assert.True(actual == extected);
+            Assert.True(actual == expected);
         }
 
         [Theory]
