@@ -1,10 +1,8 @@
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
-using Microsoft.Extensions.Logging;
 using CodeTimer.Abstractions;
+using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 
-namespace CodeTimer 
+namespace CodeTimer
 {
 
     public class CodeTimer : ICodeTimer 
