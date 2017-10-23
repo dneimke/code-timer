@@ -29,7 +29,7 @@ artifacts:
 
 deploy:
   - provider: NuGet
-    server: https://api.nuget.org/v3/index.json
+    server: https://www.nuget.org/api/v2/package
     api_key:
       secure: xOqFq+QxPdWk98gstiJzC2R+6LC3GSwXs3P+tMniwDAMUzk+LFJvD4YSPbJePAqhgoovduOZuLPNn8qtmGO5WlLcGMh1uCxaMjfcU/ecxknD+a6i9GIl6vTrybX+cHimtkEhs/vGTBHEW1dPuc+ZRoLcljE8/+oKCuonq+DyB7mL8GFkudsyAEn4ufy1RUQZCj+XoT/ATiNiEIj0lPkaQL6gfBaf+5iBWhT8rvUxAefZZ5Q9qXxX0eSX/AWVDJamw72CXZ2+0vOfYVofEHDDTncNU+eIK2ZM2fY7Ow8S+nygyr3s831nhmJje/v1d875gLsfWvy6rsVO8Gr/ufE/D/2V6CiZ2DY9Y3fFLlPyK6SNcKwB5mwJKNN+a1g9+fu+0ZhKLsTaJ8lqjLLjxtYoqy5nsl6KdvW6BzgDLx9rkYBCF2s1zdb3y+HDYlEK0CnPxY8d8uVBo2mzN4WJceMqPB4UlanuejOj2SJ4yeFOQHA=
     artifact: /.*\.nupkg/
