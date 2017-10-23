@@ -10,12 +10,10 @@ before_build:
   - dotnet restore -v minimal
 
 build:
-  project: code-timer.sln
-  parallel: true
-  verbosity: minimal
+  - dotnet build
 
 test_script: 
-  - dotnet test test\codetimer.tests
+  - dotnet test test\codetimer.tests --no-build
 
 after_build:
   - dotnet pack ./src/codetimer/codetimer.csproj -o artifacts /p:PackageVersion=%APPVEYOR_BUILD_VERSION%
@@ -24,9 +22,9 @@ artifacts:
   - path: src\codetimer\artifacts\*.nupkg
 
 deploy:
-- provider: NuGet
-  api_key:
+  - provider: NuGet
+    api_key:
     secure: OGU5pdzFVnLMi4Ux7Z4anszyUd7n+tzVdVbEBjcYHe3TC0XRNRveijFnTsPhcKmP
-  skip_symbols: true
+    skip_symbols: true
   on:
     branch: /^(master|dev)$/
