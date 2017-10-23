@@ -27,7 +27,7 @@ after_build:
 artifacts:
   - path: src\codetimer\artifacts\*.nupkg
 
-  deploy:
+deploy:
   - provider: NuGet
     server: https://api.nuget.org/v3/index.json
     api_key:
