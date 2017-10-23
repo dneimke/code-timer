@@ -12,7 +12,7 @@ init:
 
 before_build:
   - dotnet restore -v minimal
-  - echo %nuget_apikey%
+#  - echo %nuget_apikey%
 
 build:
   project: code-timer.sln
