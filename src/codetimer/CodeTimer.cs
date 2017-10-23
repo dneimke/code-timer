@@ -64,6 +64,7 @@ namespace CodeTimer
         }
 
         public long ExpectedMilliseconds { get => expectedMilliseconds; set => expectedMilliseconds = value; }
+
         public string Name { get => name; set => name = value; }
 
         public void Complete()
