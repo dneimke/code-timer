@@ -10,10 +10,12 @@ before_build:
   - dotnet restore -v minimal
 
 build:
-  - dotnet build
+  project: code-timer.sln
+  parallel: true
+  verbosity: minimal
 
 test_script: 
-  - dotnet test test\codetimer.tests --no-build
+  - dotnet test test\codetimer.tests
 
 after_build:
   - dotnet pack ./src/codetimer/codetimer.csproj -o artifacts /p:PackageVersion=%APPVEYOR_BUILD_VERSION%
