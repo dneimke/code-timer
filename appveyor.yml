@@ -7,13 +7,12 @@ environment:
   nuget_apikey:
     secure: LHjBpcjYVeJAQebGvBVylvxvN6aHuRxK2p94/Iqpb8AedXQCJobFJP1Ii0hmWZ6w
 
-echo %nuget_apikey%
-
 init:
   - git config --global core.autocrlf input
 
 before_build:
   - dotnet restore -v minimal
+  - echo %nuget_apikey%
 
 build:
   project: code-timer.sln
