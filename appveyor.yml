@@ -24,10 +24,9 @@ artifacts:
   - path: src\codetimer\artifacts\*.nupkg
 
 deploy:
-  provider: NuGet
-  server: https://www.nuget.org/api/v2/package
+- provider: NuGet
   api_key:
     secure: OGU5pdzFVnLMi4Ux7Z4anszyUd7n+tzVdVbEBjcYHe3TC0XRNRveijFnTsPhcKmP
   skip_symbols: true
-  symbol_server:           # remove to push symbols to SymbolSource.org
-  artifact: /.*\.nupkg/
+  on:
+    branch: /^(master|dev)$/
