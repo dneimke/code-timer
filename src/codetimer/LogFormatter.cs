@@ -3,6 +3,10 @@ using CodeTimer.Abstractions;
 
 namespace CodeTimer
 {
+    /// <summary>
+    /// Formatter used to output the state of a code timer to a string format.  This is the 
+    /// default implementation that is used to write to Logs.
+    /// </summary>
     internal class LogFormatter : ILogFormatter
     {
         private ICodeTimer codeTimer;
@@ -37,8 +41,8 @@ namespace CodeTimer
 
                 sb.AppendLine(formattedHeader);
 
-                foreach(var segment in codeTimer.GetMarkers()) {
-                    sb.AppendLine($" - {segment.Name}: {segment.Ticks}ms");
+                foreach(var marker in codeTimer.GetMarkers()) {
+                    sb.AppendLine($" - {marker.Name}: {marker.Ticks}ms");
                 }
                 var logMessage = sb.ToString();
 

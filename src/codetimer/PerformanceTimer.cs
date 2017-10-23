@@ -3,6 +3,9 @@ using CodeTimer.Abstractions;
 
 namespace CodeTimer
 {
+    /// <summary>
+    /// A wrapper for the Stopwatch class which simplifies testing the CodeTimer system
+    /// </summary>
     public class PerformanceTimer : IPerformanceTimer
     {
         private readonly Stopwatch timer;
