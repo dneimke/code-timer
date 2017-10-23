@@ -5,7 +5,7 @@ configuration:
 
 environment:
   nuget_apikey:
-    secure: OGU5pdzFVnLMi4Ux7Z4anszyUd7n+tzVdVbEBjcYHe3TC0XRNRveijFnTsPhcKmP
+    secure: LHjBpcjYVeJAQebGvBVylvxvN6aHuRxK2p94/Iqpb8AedXQCJobFJP1Ii0hmWZ6w
 
 init:
   - git config --global core.autocrlf input
