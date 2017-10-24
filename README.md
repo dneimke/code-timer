@@ -1,5 +1,11 @@
 # code-timer
-CodeTimer provides a standardized way to time the end-to-end cost, and the contribution of individual code segments within a method.
+CodeTimer provides an easy way to add timing code to procedure-style methods.  It provides visibility into the contribution of individual code segments within the method.
+
+The following image shows a snippet from a Log which has both AppInsights and CodeTimer running.
+
+AppInsights does the job of identifying the cost of the method while CodeTimer logs a cost breakdown for individual segments within the method.
+
+![AppInsights and CodeTimer working together](https://github.com/dneimke/code-timer/blob/master/images/runtime-view.png?raw=true)
 
 [![Build status](https://ci.appveyor.com/api/projects/status/1mocaf3ycpxjpawa?svg=true)](https://ci.appveyor.com/project/dneimke/code-timer)      [![nuget](https://img.shields.io/nuget/v/codetimer.svg)](https://www.nuget.org/packages/codetimer/)
 
