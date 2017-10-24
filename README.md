@@ -1,6 +1,6 @@
 # code-timer
 
-[![Build status](https://ci.appveyor.com/api/projects/status/1mocaf3ycpxjpawa?svg=true)](https://ci.appveyor.com/project/dneimke/code-timer)      [![nuget](https://img.shields.io/nuget/v/codetimer.svg)](https://www.nuget.org/packages/codetimer/)
+[![Build status](https://ci.appveyor.com/api/projects/status/1mocaf3ycpxjpawa?svg=true)](https://ci.appveyor.com/project/dneimke/code-timer)      [![nuget](https://img.shields.io/nuget/v/codetimer.svg)](https://www.nuget.org/packages/codetimer/)      [![nuget](https://img.shields.io/nuget/dt/codetimer.svg)](https://www.nuget.org/packages/codetimer/)
 
 CodeTimer provides an easy way to add timing code to procedure-style methods.  It provides visibility into the contribution of individual code segments within the method.
 
