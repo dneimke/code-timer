@@ -53,10 +53,13 @@ namespace CodeTimer.Tests
         static object[] ActualLessThanExpectedCase() 
         {
             var timer = new TestPerformanceTimer(900);
-            var codeTimer = new CodeTimer("Case2", null, timer)
+            
+            var codeTimer = new CodeTimer(new CodeTimerOptions
             {
+                Name = "Case1",
+                PerformanceTimer = timer,
                 ExpectedMilliseconds = 1000
-            };
+            });
 
             return new object[] { codeTimer, true };
         }
@@ -64,10 +67,12 @@ namespace CodeTimer.Tests
         static object[] ActualEqualToExpectedCase() 
         {
             var timer = new TestPerformanceTimer(1000);
-            var codeTimer = new CodeTimer("Case2", null, timer)
+            var codeTimer = new CodeTimer(new CodeTimerOptions
             {
+                Name = "Case2",
+                PerformanceTimer = timer,
                 ExpectedMilliseconds = 1000
-            };
+            });
 
             return new object[] { codeTimer, true };
         }
@@ -76,10 +81,12 @@ namespace CodeTimer.Tests
         static object[] ActualGreaterThanExpectedCase() 
         {
             var timer = new TestPerformanceTimer(1200);
-            var codeTimer = new CodeTimer("Case2", null, timer)
+            var codeTimer = new CodeTimer(new CodeTimerOptions
             {
+                Name = "Case3",
+                PerformanceTimer = timer,
                 ExpectedMilliseconds = 1000
-            };
+            });
 
             return new object[] { codeTimer, false };
         }
@@ -87,7 +94,11 @@ namespace CodeTimer.Tests
         static object[] ExpectedNotSetCase() 
         {
             var timer = new TestPerformanceTimer(1200);
-            var codeTimer = new CodeTimer("Case2", null, timer);
+            var codeTimer = new CodeTimer(new CodeTimerOptions
+            {
+                Name = "Case4",
+                PerformanceTimer = timer
+            });
 
             return new object[] { codeTimer, true };
         }
@@ -115,7 +126,11 @@ namespace CodeTimer.Tests
         static object[] NoMarkersAdded()
         {
             var timer = new TestPerformanceTimer(900);
-            var codeTimer = new CodeTimer("NoMarkersAdded", null, timer);
+            var codeTimer = new CodeTimer(new CodeTimerOptions
+            {
+                Name = "NoMarkersAdded",
+                PerformanceTimer = timer
+            });
 
             return new object[] { codeTimer, 0 };
         }
@@ -123,7 +138,11 @@ namespace CodeTimer.Tests
         static object[] OneMarkerAdded()
         {
             var timer = new TestPerformanceTimer(1000);
-            var codeTimer = new CodeTimer("OneMarkerAdded", null, timer);
+            var codeTimer = new CodeTimer(new CodeTimerOptions
+            {
+                Name = "OneMarkerAdded",
+                PerformanceTimer = timer
+            });
 
             codeTimer.Mark("Marker 1");
 

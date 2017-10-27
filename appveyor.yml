@@ -12,7 +12,6 @@ init:
 
 before_build:
   - dotnet restore -v minimal
-#  - echo %nuget_apikey%
 
 build:
   project: code-timer.sln
@@ -37,7 +36,6 @@ artifacts:
 #    branch: /^(master|dev)$/
 
 deploy_script:
-- appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
-#- nuget update -self
-- ps: .\nuget.exe setApiKey $env:nuget_apikey -source https://www.nuget.org | out-null
-- ps: ($artifacts.values | Where-Object { $_.path -like '*.nupkg' }) | foreach-object {nuget.exe push $_.path -Source https://www.nuget.org/api/v2/package}
+ - appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
+ - ps: .\nuget.exe setApiKey $env:nuget_apikey -source https://www.nuget.org | out-null
+ - ps: ($artifacts.values | Where-Object { $_.path -like '*.nupkg' }) | foreach-object {nuget.exe push $_.path -Source https://www.nuget.org/api/v2/package}

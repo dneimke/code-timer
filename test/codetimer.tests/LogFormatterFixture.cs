@@ -15,15 +15,29 @@ namespace CodeTimer.Tests
 
         [Theory]
         [ClassData(typeof(TestDataGenerator))]
-        public void ShouldFormatWhenMarkersPresent(ICodeTimer codeTimer, string expected)
+        public void ShouldFormatVerboseWhenMarkersPresent(ICodeTimer codeTimer, string expectedNonVerbose, string expectedVerbose)
         {
             // Arrange
+            codeTimer.Verbose = true;
 
             // Act
             var actual = codeTimer.GetFormattedResult();
 
             // Assert
-            Assert.True(actual.Equals(expected), $"{Environment.NewLine}Expected: {expected}{Environment.NewLine}Actual: {actual}");
+            Assert.True(actual.Equals(expectedVerbose), $"{Environment.NewLine}Expected: {expectedVerbose}{Environment.NewLine}Actual: {actual}");
+        }
+
+        [Theory]
+        [ClassData(typeof(TestDataGenerator))]
+        public void ShouldFormatNonVerboseWhenMarkersPresent(ICodeTimer codeTimer, string expectedNonVerbose, string expectedVerbose)
+        {
+            // Arrange
+            
+            // Act
+            var actual = codeTimer.GetFormattedResult();
+
+            // Assert
+            Assert.True(actual.Equals(expectedNonVerbose), $"{Environment.NewLine}Expected: {expectedNonVerbose}{Environment.NewLine}Actual: {actual}");
         }
 
 
@@ -62,10 +76,12 @@ namespace CodeTimer.Tests
         static object[] FailsWithMarksCase() 
         {
             var timer = new TestPerformanceTimer(0);
-            var codeTimer = new CodeTimer("Case1", null, timer)
+            var codeTimer = new CodeTimer(new CodeTimerOptions
             {
+                Name = "Case1",
+                PerformanceTimer = timer,
                 ExpectedMilliseconds = 1000
-            };
+            });
 
             timer.SetElapsedMilliseconds(400);
             codeTimer.Mark("Start");
@@ -82,15 +98,20 @@ namespace CodeTimer.Tests
             sb.AppendLine(" - Middle: 800ms");
             sb.AppendLine(" - End: 1200ms");
             
-            var expected = sb.ToString();
+            var expectedVerbose = sb.ToString();
+            var expectedNonVerbose = $"Case1,1200,failed,400,800,1200";
 
-            return new object[] {codeTimer, expected};
+            return new object[] {codeTimer, expectedNonVerbose, expectedVerbose};
         }
 
         static object[] SucceedsWithNoExpectedCase() 
         {
             var timer = new TestPerformanceTimer(0);
-            var codeTimer = new CodeTimer("Case1", null, timer);
+            var codeTimer = new CodeTimer(new CodeTimerOptions
+            {
+                Name = "Case2",
+                PerformanceTimer = timer
+            });
 
             timer.SetElapsedMilliseconds(400);
             codeTimer.Mark("Start");
@@ -102,24 +123,27 @@ namespace CodeTimer.Tests
             codeTimer.Mark("End");
 
             var sb = new StringBuilder();
-            sb.AppendLine("Case1 timer succeeded.  Ran for 1200ms.");
+            sb.AppendLine("Case2 timer succeeded.  Ran for 1200ms.");
             sb.AppendLine(" - Start: 400ms");
             sb.AppendLine(" - Middle: 800ms");
             sb.AppendLine(" - End: 1200ms");
 
-            var expected = sb.ToString();
+            var expectedVerbose = sb.ToString();
+            var expectedNonVerbose = $"Case2,1200,succeeded,400,800,1200";
 
-            return new object[] { codeTimer, expected };
+            return new object[] { codeTimer, expectedNonVerbose, expectedVerbose };
         }
 
 
         static object[] SucceedsWithExpectedCase() 
         {
             var timer = new TestPerformanceTimer(0);
-            var codeTimer = new CodeTimer("Case1", null, timer)
+            var codeTimer = new CodeTimer(new CodeTimerOptions
             {
+                Name = "Case3",
+                PerformanceTimer = timer,
                 ExpectedMilliseconds = 1000
-            };
+            });
 
             timer.SetElapsedMilliseconds(400);
             codeTimer.Mark("Start");
@@ -131,14 +155,15 @@ namespace CodeTimer.Tests
             codeTimer.Mark("End");
 
             var sb = new StringBuilder();
-            sb.AppendLine("Case1 timer succeeded.  Ran for 1000ms, expected 1000ms.");
+            sb.AppendLine("Case3 timer succeeded.  Ran for 1000ms, expected 1000ms.");
             sb.AppendLine(" - Start: 400ms");
             sb.AppendLine(" - Middle: 800ms");
             sb.AppendLine(" - End: 1000ms");
 
-            var expected = sb.ToString();
+            var expectedVerbose = sb.ToString();
+            var expectedNonVerbose = $"Case3,1000,succeeded,400,800,1000";
 
-            return new object[] { codeTimer, expected };
+            return new object[] { codeTimer, expectedNonVerbose, expectedVerbose };
         }
 
         public IEnumerator<object[]> GetEnumerator()

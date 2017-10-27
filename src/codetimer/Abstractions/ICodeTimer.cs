@@ -15,6 +15,11 @@ namespace CodeTimer.Abstractions
         long ExpectedMilliseconds {get; set;}
 
         /// <summary>
+        /// Toggles between Verbose and Non-Verbose output formatting
+        /// </summary>
+        bool Verbose { get; set; }
+
+        /// <summary>
         /// Stops the underlying timer and finishes the timing operation
         /// </summary>
         void Complete();
