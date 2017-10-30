@@ -10,6 +10,8 @@ AppInsights does the job of identifying the cost of the method while CodeTimer l
 
 ![AppInsights and CodeTimer working together](https://github.com/dneimke/code-timer/blob/master/images/runtime-view.png?raw=true)
 
+Read more about why you would use CodeTimer in [this article](https://github.com/dneimke/code-timer/wiki).
+
 ## Installation
 
 ```sh
