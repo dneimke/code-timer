@@ -99,7 +99,7 @@ namespace CodeTimer.Tests
             sb.AppendLine(" - End: 1200ms");
             
             var expectedVerbose = sb.ToString();
-            var expectedNonVerbose = $"Case1,1200,failed,400,800,1200";
+            var expectedNonVerbose = $"Case1,1000,1200,failed,400,800,1200";
 
             return new object[] {codeTimer, expectedNonVerbose, expectedVerbose};
         }
@@ -129,7 +129,7 @@ namespace CodeTimer.Tests
             sb.AppendLine(" - End: 1200ms");
 
             var expectedVerbose = sb.ToString();
-            var expectedNonVerbose = $"Case2,1200,succeeded,400,800,1200";
+            var expectedNonVerbose = $"Case2,0,1200,succeeded,400,800,1200";
 
             return new object[] { codeTimer, expectedNonVerbose, expectedVerbose };
         }
@@ -161,7 +161,7 @@ namespace CodeTimer.Tests
             sb.AppendLine(" - End: 1000ms");
 
             var expectedVerbose = sb.ToString();
-            var expectedNonVerbose = $"Case3,1000,succeeded,400,800,1000";
+            var expectedNonVerbose = $"Case3,1000,1000,succeeded,400,800,1000";
 
             return new object[] { codeTimer, expectedNonVerbose, expectedVerbose };
         }

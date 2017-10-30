@@ -64,11 +64,12 @@ namespace CodeTimer
         {
             var jobName = string.IsNullOrEmpty(codeTimer.Name) ? "CodeTimer" : $"{codeTimer.Name}";
             var timeTaken = codeTimer.GetElapsedMilliseconds();
+            var expected = codeTimer.ExpectedMilliseconds;
             var result = codeTimer.Success() ? "succeeded" : "failed";
 
             var sb = new StringBuilder();
 
-            sb.Append($"{jobName},{timeTaken},{result},");
+            sb.Append($"{jobName},{expected},{timeTaken},{result},");
 
             foreach (var marker in codeTimer.GetMarkers())
             {
